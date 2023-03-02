@@ -1,22 +1,23 @@
 {
-  "name": "node",
+  "name": "complete-guide",
   "version": "1.0.0",
-  "description": "Complete Node JS Guide",
+  "description": "",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon app.js"
   },
+  "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/rajneesh18/nodejs/issues"
-  },
-  "homepage": "https://github.com/rajneesh18/nodejs#readme",
   "devDependencies": {
     "nodemon": "^2.0.20"
   },
   "dependencies": {
-    "express": "^4.18.2"
+    "body-parser": "^1.20.2",
+    "ejs": "^3.1.8",
+    "express": "^4.18.2",
+    "express-handlebars": "^7.0.1",
+    "pug": "^3.0.2"
   }
 }
