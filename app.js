@@ -1,14 +1,21 @@
 const http = require('http');
-const bodyParser = require('body-parser');
 const path = require('path');
 
 const express = require('express');
+const bodyParser = require('body-parser');
+const expressHbs = require('express-handlebars');
 
 const rootDir = require('./util/path');
 
 const app = express();
 
-app.set('view engine', 'pug');
+/** express-handlebars are not build in, it's from 3rd party package, we have to first install it & then use it with method engine() */
+app.engine('hbs', expressHbs.engine({
+    extname: "hbs",
+    defaultLayout: false
+}));
+
+app.set('view engine', 'hbs');
 app.set('views', 'views');
 
 const adminData = require('./routes/admin');
