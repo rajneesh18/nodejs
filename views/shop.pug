@@ -4,7 +4,7 @@ html(lang="en")
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         meta(http-equiv="X-UA-Compatible", content="ie=edge")
-        title My Shop
+        title #{docTitle}
         link(rel="stylesheet" href="/css/main.css")
         link(rel="stylesheet" href="/css/main.css")
     body
@@ -16,4 +16,19 @@ html(lang="en")
                     li.main-header_item
                         a(href="/admin/add-product") Add Product
 
-
+        main
+            if prods.length > 0
+               .grid
+                    each product in prods
+                        article.card.product-item
+                            header.card_header
+                                h1.product_title #{product.title}
+                            .card_image
+                                img(src="https://cdn.pixabay.com/photo/2016/03/31/20/51/book-1296045_960_720.png" alt="A Great Book")
+                            .card_content
+                                h2.product_price $19.99
+                                p.product_description A very interesting book about so many even more interesting things!
+                            .card_actions
+                                button.btn Add to Cart
+            else
+                h1 No Products
