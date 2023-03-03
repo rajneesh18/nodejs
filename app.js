@@ -12,7 +12,8 @@ const app = express();
 /** express-handlebars are not build in, it's from 3rd party package, we have to first install it & then use it with method engine() */
 app.engine('hbs', expressHbs.engine({
     extname: "hbs",
-    defaultLayout: false
+    layoutsDir: 'views/layouts',
+    defaultLayout: 'main-layout'
 }));
 
 app.set('view engine', 'hbs');
