@@ -3,20 +3,12 @@ const path = require('path');
 
 const express = require('express');
 const bodyParser = require('body-parser');
-const expressHbs = require('express-handlebars');
 
 const rootDir = require('./util/path');
 
 const app = express();
 
-/** express-handlebars are not build in, it's from 3rd party package, we have to first install it & then use it with method engine() */
-app.engine('hbs', expressHbs.engine({
-    extname: "hbs",
-    layoutsDir: 'views/layouts',
-    defaultLayout: 'main-layout'
-}));
-
-app.set('view engine', 'hbs');
+app.set('view engine', 'ejs');
 app.set('views', 'views');
 
 const adminData = require('./routes/admin');
