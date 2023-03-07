@@ -1,21 +1,17 @@
-<header class="main-header">
-    <nav class="main-header_nav">
-        <ul class="main-header_item-list">
-            <li class="main-header_item">
-                <a href="/" class="<%= (path === '/') ? 'active' : '' %>">Shop</a>
-            </li>
-            <li class="main-header_item">
-                <a href="/products" class="<%= (path === '/products') ? 'active' : '' %>">Products</a>
-            </li>
-            <li class="main-header_item">
-                <a href="/cart" class="<%= (path === '/cart') ? 'active' : '' %>">Cart</a>
-            </li>
-            <li class="main-header_item">
-                <a href="/admin/add-product" class="<%= (path === '/admin/add-product') ? 'active' : '' %>">Add Product</a>
-            </li>
-            <li class="main-header_item">
-                <a href="/admin/products" class="<%= (path === '/admin/products' ? 'active' : '') %>">Admin Products</a>
-            </li>
-        </ul>
-    </nav>
-</header>
+<div class="ui secondary pointing menu">
+    <a href="/" class="<%= (path === '/') ? 'active' : '' %> item">
+        Shop
+    </a>
+    <a href="/products" class="<%= (path === '/products') ? 'active' : '' %> item">
+        Products
+    </a>
+    <a href="/cart" class="<%= (path === '/cart') ? 'active' : '' %> item">
+        Cart
+    </a>
+    <a href="/admin/add-product" class="<%= (path === '/admin/add-product') ? 'active' : '' %> item">
+        Add Product
+    </a>
+    <a href="/admin/products" class="<%= (path === '/admin/products') ? 'active' : '' %> item">
+        Admin Products
+    </a>
+</div>

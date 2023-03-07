@@ -2,32 +2,39 @@
 </head>
 
 <body>
-    <%- include('../includes/navigation.ejs') %>
+<%- include('../includes/navigation.ejs') %>
 
-    <main>
-        <% if (prods.length > 0) { %>
-        <div class="grid">
-                    <% for (let product of prods) { %>
-                        <article class="card product-item">
-                            <header class="card_header">
-                                <h1 class="product_title"><%= product.title %></h1>
-                            </header>
-                            <div class="card_image">
-                                <img src="https://cdn.pixabay.com/photo/2016/03/31/20/51/book-1296045_960_720.png" alt="A Great Book" alt="A great book">
-                            </div>
-                            <div class="card_content">
-                                <h2 class="product_price">$19.99</h2>
-                                <p class="product_description">A very interesting book about so many</p>
-                            </div>
-                            <div class="card_actions">
-                                <button class="btn">Add to Cart</button>
-                            </div>
-                        </article>
+<div class="ui container">
+    <% if (prods.length > 0) { %>
+        <div class="ui link cards">
+            <% for (let product of prods) { %>
+                <div class="card">
+                    <div class="image">
+                        <img src="https://cdn.pixabay.com/photo/2016/03/31/20/51/book-1296045_960_720.png" alt="A great book">
+                    </div>
+                    <div class="content">
+                        <div class="header"><%= product.title %></div>
+                        <div class="meta">
+                            <a>$29.99</a>
+                        </div>
+                        <div class="description">
+                            A very interesting book about so many
+                        </div>
+                    </div>
+                    <div class="extra content">
+                        <a>
+                            <button class="ui black basic button">
+                                Add to Cart
+                            </button>
+                        </a>
+                    </div>
+                </div>
+
             <% } %>
         </div>
-        <% } else { %>
-            <h2>No Products Found</h2>
-        <% } %>
-    </main>
+    <% } else { %>
+        <h2>No Products Found</h2>
+    <% } %>
+</div>
 
 <%- include('../includes/end.ejs') %>
