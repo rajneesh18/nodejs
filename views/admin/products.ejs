@@ -3,4 +3,43 @@
 
 <body>
 <%- include('../includes/navigation.ejs') %>
+
+<div class="ui container">
+    <% if (prods.length > 0) { %>
+        <div class="ui cards">
+            <% for (let product of prods) { %>
+                <div class="card">
+                    <div class="image">
+                        <img src="<%= product.imageUrl %>" alt="<%= product.title %>">
+                    </div>
+                    <div class="content">
+                        <div class="header"><%= product.title %></div>
+                        <div class="meta">
+                            <a>$ <%= product.price %></a>
+                        </div>
+                        <div class="description">
+                            <%= product.description %>
+                        </div>
+                    </div>
+                    <div class="extra content">
+                        <form method="POST" action="/admin/delete-product" >
+                            <a href="/admin/edit-product">
+                                <button class="ui black basic button" type="button">
+                                    Edit
+                                </button>
+                            </a>
+                            <button class="ui link black basic button" type="submit">
+                                Delete
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+            <% } %>
+        </div>
+    <% } else { %>
+        <h2>No Products Found</h2>
+    <% } %>
+</div>
+
 <%- include('../includes/end.ejs') %>
