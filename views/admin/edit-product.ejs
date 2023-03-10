@@ -1,5 +1,5 @@
 <%- include('../includes/head.ejs') %>
-<link rel="stylesheet" href="/css/product.css">
+<link rel="stylesheet" href="css/product.css">
 </head>
 
 <body>
@@ -7,19 +7,19 @@
 <div class="ui container">
     <form class="ui form" action="/admin/<% if(editing) { %>edit-product<% } else { %>add-product<% } %>" method="POST">
         <div class="field">
-            <label>Title</label>
+            <label for="title">Title</label>
             <input type="text" name="title" id="title" placeholder="Title" value="<% if(editing) { %><%=product.title%><% } %>" />
         </div>
         <div class="field">
-            <label>Image URL</label>
+            <label for="imageUrl">Image URL</label>
             <input type="text" name="imageUrl"  id="imageUrl" placeholder="Image URL" value="<% if(editing) { %><%=product.imageUrl%><% } %>" />
         </div>
         <div class="field">
-            <label>Price</label>
+            <label for="price">Price</label>
             <input type="number" name="price"  id="price" placeholder="Price" value="<% if(editing) { %><%=product.price%><% } %>"/>
         </div>
         <div class="field">
-            <label>Description</label>
+            <label for="description">Description</label>
             <textarea name="description" id="description" rows="5"><% if(editing) { %><%=product.description%><% } %></textarea>
         </div>
 
