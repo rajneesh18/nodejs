@@ -23,6 +23,7 @@
                     </div>
                     <div class="extra content">
                         <form method="POST" action="/admin/delete-product" >
+                            <input type="hidden" name="productId" value="<%=product.id%>" />
                             <a href="/admin/edit-product/<%=product.id%>?edit=true">
                                 <button class="ui black basic button" type="button">
                                     Edit
