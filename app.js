@@ -5,7 +5,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 const errorController = require("./controllers/error");
-const db = require('./util/db');
+const sequelize = require('./util/db');
 
 const rootDir = require('./util/path');
 const app = express();
@@ -25,4 +25,10 @@ app.use(shopRoutes);
 app.use(errorController.get404Page);
 
 const server = http.createServer(app);
-server.listen(3000);
+sequelize
+    .sync()
+    .then(result => {
+        console.log(result);
+        server.listen(3000);
+    })
+    .catch(err => console.log(err));
