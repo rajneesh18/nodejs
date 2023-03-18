@@ -12,18 +12,18 @@ module.exports = class Product {
     }
 
     save() {
-
+        return db.execute(`INSERT INTO products (title, price, imageUrl, description) VALUES (?,?,?,?)`, [this.title, this.price, this.imageUrl, this.description]);
     }
 
     static deleteById(id) {
-        return db.execute(`delete from products where id = ${id}`);
+        return db.execute('DELETE FROM products WHERE id = ?', [id]);
     }
 
     static fetchAll() {
-        return db.execute('Select * from products');
+        return db.execute('SELECT * FROM products');
     }
 
     static findById(id) {
-        return db.execute(`select * from products where id = ${id} limit 1`);
+        return db.execute('SELECT * FROM products WHERE id = ? limit 1');
     }
 }
