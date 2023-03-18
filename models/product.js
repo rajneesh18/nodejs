@@ -15,6 +15,10 @@ module.exports = class Product {
         return db.execute(`INSERT INTO products (title, price, imageUrl, description) VALUES (?,?,?,?)`, [this.title, this.price, this.imageUrl, this.description]);
     }
 
+    update(id) {
+        return db.execute('UPDATE products SET title = ?, price = ?, imageUrl = ?, description = ? WHERE id = ?',  [this.title, this.price, this.imageUrl, this.description, id]);
+    }
+
     static deleteById(id) {
         return db.execute('DELETE FROM products WHERE id = ?', [id]);
     }
@@ -24,6 +28,6 @@ module.exports = class Product {
     }
 
     static findById(id) {
-        return db.execute('SELECT * FROM products WHERE id = ? limit 1');
+        return db.execute('SELECT * FROM products WHERE id = ?', [id]);
     }
 }
