@@ -14,12 +14,14 @@ exports.postAddProduct = (req, res) => {
     const price = req.body.price;
     const description = req.body.description;
 
-    const product = new Product(null, title, imageUrl, description, price);
-    product.save()
-        .then(() => {
-            res.redirect('/');
-        })
-        .catch(err => console.log(err));
+    Product.create({
+        title: title,
+        imageUrl: imageUrl,
+        price: price,
+        description: description
+    }).then((result) => {
+        console.log('Created Product')
+    }).catch(err => console.log(err));
 }
 
 exports.getEditProduct = (req, res) => {
