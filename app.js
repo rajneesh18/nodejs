@@ -44,10 +44,8 @@ Product.belongsToMany(Cart, {through: CartItem});
 
 const server = http.createServer(app);
 sequelize
-    .sync()
-    .then(result => {
-        return User.findByPk(1);
-    })
+    .sync({ force: false })
+    .then(result => { return User.findByPk(1); })
     .then(user => {
         if(!user) {
             return User.create({
@@ -58,9 +56,9 @@ sequelize
         return user;
     })
     .then(user => {
-        return user.createCart();
+        return Cart.create({userId: user.id});
     })
-    .then(Cart => {
+    .then((cart) => {
         server.listen(3000);
     })
     .catch(err => console.log(err));

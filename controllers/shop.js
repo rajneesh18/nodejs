@@ -33,7 +33,6 @@ exports.getCart = (req, res) => {
         .getCart()
         .then(cart => {
             return cart.getProducts().then(products => {
-                console.log(products);
                 res.render('shop/cart', {
                     path: '/cart',
                     pageTitle: 'Your Cart',
@@ -78,9 +77,16 @@ exports.postCart = (req, res) => {
 
 exports.postCartDeleteProduct = (req, res) => {
     const prodId = req.body.productId;
-    Product.findByPk(prodId)
-        .then(product => {
-            Cart.deleteProduct(prodId, product.price);
+    req.user
+        .getCart()
+        .then(cart => {
+            return cart.getProducts({ where: { id: prodId } });
+        })
+        .then(products => {
+            const product = products[0];
+            return product.cartItem.destroy();
+        })
+        .then(result => {
             res.redirect('/cart');
         })
         .catch(err => console.log(err));
