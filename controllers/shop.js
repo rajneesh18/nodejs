@@ -33,6 +33,7 @@ exports.getCart = (req, res) => {
         .getCart()
         .then(cart => {
             return cart.getProducts().then(products => {
+                console.log(products);
                 res.render('shop/cart', {
                     path: '/cart',
                     pageTitle: 'Your Cart',
@@ -44,9 +45,27 @@ exports.getCart = (req, res) => {
 
 exports.postCart = (req, res) => {
     const prodId = req.body.productId;
-    Product.findByPk(prodId)
-        .then(product => {
-            Cart.addProduct(prodId, product.price);
+    let fetchedCart;
+    req.user
+        .getCart()
+        .then(cart => {
+            fetchedCart = cart;
+            return cart.getProducts({where: {id: prodId}});
+        })
+        .then(products => {
+            let product;
+            if(products.length > 0) {
+                product = products[0];
+            }
+            let newQty = 1;
+            if(product) {
+                // ....
+            }
+            return Product.findByPk(prodId).then(product => {
+                return fetchedCart.addProduct(product, { through: { quantity: newQty } });
+            }).catch(err => console.log(err));
+        })
+        .then(() => {
             res.redirect('/cart');
         })
         .catch(err => console.log(err));
