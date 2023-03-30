@@ -11,7 +11,7 @@ const User = require('./models/user');
 const Cart = require('./models/cart');
 const CartItem = require('./models/cart-item');
 const Order = require('./models/order');
-const OrderItem = require('./models/order-items');
+const OrderItem = require('./models/order-item');
 
 const rootDir = require('./util/path');
 const app = express();
@@ -49,7 +49,7 @@ Order.belongsToMany(Product, { through: OrderItem});
 
 const server = http.createServer(app);
 sequelize
-    // .sync({ force: false })
+    // .sync({ force: true })
     .sync()
     .then(result => { return User.findByPk(1); })
     .then(user => {
