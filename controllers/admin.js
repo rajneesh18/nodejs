@@ -1,3 +1,5 @@
+const mongodb = require('mongodb');
+const db = require('../util/db');
 const Product = require("../models/product");
 
 exports.getAddProduct = (req, res) => {
@@ -23,21 +25,20 @@ exports.postAddProduct = (req, res) => {
         }).catch(err => console.log(err));
 }
 
-// exports.getEditProduct = (req, res) => {
-//     const editMode = req.query.edit;
-//     if(!editMode) { return res.redirect('/'); }
-//
-//     const prodId = req.params.productId;
-//     // Product.findByPk(prodId)
-//     req.user.getProducts({where: {id: prodId}})
-//         .then(products => {
-//             const product = products[0];
-//             if(!product) return res.redirect('/');
-//             res.render('admin/edit-product', { product:product, pageTitle: product.title, path:'/admin/edit-product', editing: editMode });
-//         })
-//         .catch(err => console.log(err));
-// }
-//
+exports.getEditProduct = (req, res) => {
+    const editMode = req.query.edit;
+    if(!editMode) { return res.redirect('/'); }
+
+    const prodId = req.params.productId;
+    Product.findById(prodId)
+        .then(products => {
+            const product = products[0];
+            if(!product) return res.redirect('/');
+            res.render('admin/edit-product', { product:product, pageTitle: product.title, path:'/admin/edit-product', editing: editMode });
+        })
+        .catch(err => console.log(err));
+}
+
 // exports.postEditProduct = (req, res) => {
 //     const prodId = req.body.productId;
 //     const updatedTitle = req.body.title;
@@ -79,16 +80,15 @@ exports.postAddProduct = (req, res) => {
 //         })
 //         .catch();
 // }
-//
-// exports.getProducts = (req, res) => {
-//     // Product.findAll()
-//     req.user.getProducts()
-//         .then(products => {
-//             res.render('admin/products', {
-//                 prods: products,
-//                 pageTitle: 'Admin Products',
-//                 path: '/admin/products'
-//             });
-//         })
-//         .catch(err => console.log(err));
-// }
+
+exports.getProducts = (req, res) => {
+    Product.fetchAll()
+        .then(products => {
+            res.render('admin/products', {
+                prods: products,
+                pageTitle: 'Admin Products',
+                path: '/admin/products'
+            });
+        })
+        .catch(err => console.log(err));
+}
