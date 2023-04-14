@@ -103,7 +103,14 @@ class User {
     }
 
     getOrders() {
-
+        const db = getDb();
+        return db.collection('orders')
+            .find()
+            .toArray()
+            .then(orders => {
+                return orders;
+            })
+            .catch(err => console.log(err));
     }
 
     static findById(userId) {
