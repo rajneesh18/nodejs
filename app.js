@@ -1,11 +1,10 @@
-const http = require('http');
 const path = require('path');
 
 const express = require('express');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
 const errorController = require("./controllers/error");
-const mongoConnect = require('./util/db').mongoConnect;
 const User = require('./models/user');
 
 const rootDir = require('./util/path');
@@ -33,6 +32,11 @@ app.use(shopRoutes);
 
 app.use(errorController.get404Page);
 
-mongoConnect(() => {
-    app.listen(3000);
-})
+mongoose
+    .connect('mongodb+srv://rkshukla:N9wMbEkj46DqwicN@cluster0.9zjumcl.mongodb.net/shop?retryWrites=true&w=majority')
+    .then(result => {
+        app.listen(3000);
+    })
+    .catch(err => {
+        err => console.log(err);
+    });
