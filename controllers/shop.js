@@ -44,10 +44,10 @@ exports.postCart = (req, res) => {
     const prodId = req.body.productId;
     Product.findById(prodId)
         .then(product => {
-            req.user.addToCart(product);
+            return req.user.addToCart(product);
         })
         .then(result => {
-            console.log(result);
+            console.log(result, 'cart');
             res.redirect('/cart');
         })
         .catch(err => console.log(err));
