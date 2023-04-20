@@ -77,7 +77,10 @@ exports.postDeleteProduct = (req, res) => {
 
 exports.getProducts = (req, res) => {
     Product.find()
+        // .select('title price -_id')
+        // .populate('userId', 'name') // It allows us to populate the related data not just the ID
         .then(products => {
+            console.log(products);
             res.render('admin/products', {
                 prods: products,
                 pageTitle: 'Admin Products',
