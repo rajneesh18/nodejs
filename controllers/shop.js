@@ -83,9 +83,15 @@ exports.postOrder = (req, res) => {
             });
 
             return order.save();
-        });
+        })
+        .then(result => {
+            return req.user.clearCart();
+        })
+        .then(() => {
+            res.redirect('/orders');
+        })
+        .catch(err => console.log(err));
 
-        res.redirect('/orders');
 }
 
 exports.getOrders = (req, res) => {
