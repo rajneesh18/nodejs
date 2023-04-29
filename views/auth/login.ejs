@@ -1,0 +1,22 @@
+<%- include('../includes/head.ejs') %>
+
+    </head>
+
+<body>
+<%- include('../includes/navigation.ejs') %>
+<div class="ui container">
+    <form class="ui form" action="login" method="POST">
+        <div class="field">
+            <label for="email">E-Mail</label>
+            <input type="email" name="email" id="email" />
+        </div>
+        <div class="field">
+            <label for="password">Password</label>
+            <input type="password" name="password"  id="password" />
+        </div>
+
+        <button class="ui button" type="submit">Login</button>
+    </form>
+</div>
+
+<%- include('../includes/end.ejs') %>
